@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/> 
+	<title>Document</title>
+	<link href="css/public.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/page-common.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="css/style.css">
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="js/public.js" type="text/javascript" charset="utf-8" async defer></script>
+</head>
+<body class="bg_e bo_h">
+	<div class="xx_box">
+		<a class="map_btn" id="map_btn"><i><img src="images/xx_03.png"></i><span>点击获取地理位置</span></a>
+		<form id="xx_form">
+			<p><label>我正在</label><input type="text" maxlength="30" id="dzxx" value="杭州"></p>
+			<p><label>我想买</label><input type="text" maxlength="30" id="wantcp" placeholder="输入商品名称"></p>
+			<p><label>币种</label><input type="button" maxlength="30" id="bzxz" value="选择消费币种" ></p>
+			<p><label>金额</label><input type="text" maxlength="30" id="num" placeholder="输入消费金额"></p>
+			<div class="img_xz">
+				<div class="img_txt">
+					<i><img src="images/xx_11.png"></i>
+					<span>赶紧和手信合影一张吧</span>
+				</div>
+				<input  id="file" accept="image/*" type="file"/>
+				<img id="previewResult"/>
+				
+			</div>
+			<div class="app" id="uploadPage">
+                <div class="app_bg"></div>
+    				<div class="bar">
+    					<a id="getFile" class="pull-right">确定生成</a></div>
+    				<div class="main">
+        				<canvas class="upload-mask" width="320" height="800"></canvas>
+                        <img src="images/im_b.png" class="img_b">
+        				<div class="preview-box">
+            				<img id="preview"/>
+        				</div>
+        				<canvas class="photo-canvas"></canvas>
+    				</div>
+			</div>
+			
+		</form>
+		<a class="scim_btn">生成图片</a>
+	</div>
+    <script src="js/hd.js"></script>
+	<div class="hb_box">
+		<div class="seach_hb">
+			<input type="text" placeholder="Seach" id="seach_">
+			<i><img src="images/seach_btn.png"></i>
+		</div>
+		<div class="seach_jg" id="seach_jg">
+			<ul id="seach_ul">
+				<li>人民币 CNY</li>
+                <li>美元 USD</li>
+                <li>港币 HKD</li>
+                <li>欧元 EUR</li>
+                <li>日元 JPY</li>
+                <li>英镑 GBP</li>
+                <li>新台币 TWD</li>
+                <li>澳门币 MOP</li>
+                <li>澳元 AUD</li>
+                <li>加拿大元 CAD</li>
+                <li>台币 TWD</li>
+                <li>台币 TWD</li>
+                <li>台币 TWD</li>
+                <li>台币 TWD</li>
+                <li>台币 TWD</li>
+                <li>台币 TWD</li>
+			</ul>
+		</div>
+
+	</div>
+
+
+
+
+    <div class="sc_img">
+        <div style="zoom:0.5;">
+        <img id="scream" src="images/img.png" alt="The Scream" style="width: 500px; margin: 0 auto; display: none;">
+        <img id="icon_dz" src="images/icon_03.png" alt="icon" style="width: 57px; margin: 0 auto; display: none;">
+        <img id="ewm" src="images/icon_07.png" alt="The Scream" style="width: 500px; margin: 0 auto; display: none;">
+        <canvas id="myCanvas" width="1000" height="2000" style=" width: 500px; height: 1000px; border:1px solid #000;  margin: 0 auto; background: #fff; border-radius: 0.3rem;"></canvas> 
+        
+    </div>
+    <div class="loding">
+		<img src="images/s_03.png" class="lod" id="lod">
+		<img src="images/logo.png" class="lod_logo">
+		<p>图片生成中....</p>
+    </div>
+    <div class="imgdow">
+		<img src="" id="canimg">
+		<a href="#"  id="dow_btn">下载图片</a>
+        <div class="imgdow_w">
+            <div class="imgdow_txt">
+                <h2>活动参与方式 A：微信分享</h2>
+                <p>＊分享图片至朋友圈</p>
+                <p>＊标注地理位置</p>
+                <p>＊截屏发至「极简汇率服务号」并留下联系方式</p>
+
+            </div>
+            <div class="imgdow_txt">
+                <h2>活动参与方式 B：微博话题</h2>
+                <p>＊分享图片</p>
+                <p>＊标注地理位置</p>
+                <p>＊建立话题＃极简汇率帮我买单吧＃</p>
+                <p>＊@极简汇率app 及两位好友</p>
+            </div>
+            <div class="imgdow_txt top_img ">
+                <h2>多个手信可多次投稿参与活动，每日 21:00 公布当天评选结果。</h2>
+                <h2 class="top_img">活动日期：2017 年 10 月 1日 ~ 8 日 21:00</h2>
+
+            </div>
+            <div class="js_ing top_img">* 本活动最终解释权归为 云游道科技有限责任公司 所有</div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var lod = document.getElementById("lod")
+    var nug =0;
+    function lodg(){	
+    	nug=nug+15;
+    	$("#lod").css({  
+        'transform':'rotate('+nug+'deg)',  
+        '-moz-transform':'rotate('+nug+'deg)',  
+        '-o-transform':'rotate('+nug+'deg)'   
+})
+    }
+    setInterval("lodg()", 50);
+    
+</script>
+   <div class=" fx_box">
+       <div class="fx_txt">
+           <h2></h2>
+       </div>
+   </div>
+    </div>
+	<script src="js/require.js" ></script>
+	<script src="js/main.js"></script>
+    <script src="js/sc.js"></script>
+    <script src="js/fx.js"></script>
+	<script>
+        //点击定位
+		$("#map_btn").click(function(){
+			$.getScript('http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js', function(_result) {
+ 				if (remote_ip_info.ret == '1') {
+ 					//alert('国家：' + remote_ip_info.country +'\n省：' + remote_ip_info.province + '\n市：' + remote_ip_info.city + '\n区：' + remote_ip_info.district + '\nISP：' + remote_ip_info.isp + '\n类型：' + remote_ip_info.type + '\n其他：' + remote_ip_info.desc);
+ 					$("#dzxx").val(remote_ip_info.country+"."+remote_ip_info.province+"."+remote_ip_info.city)
+ 				} else {
+ 					alert('浏览器不支持定位！');
+ 				}
+ 			});
+		})
+</script>
+<script>
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="ProgId" content="Excel.Sheet"/>
+  <meta name="Generator" content="WPS Office ET"/>
+<!-- 引入jQuery UI的css文件 -->
+<link href="http://code.jquery.com/ui/1.10.4/themes/ui-darkness/jquery-ui.css" />
+<!-- 引入jQuery的js文件 -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js" ></script>
+<!-- 引入jQuery UI的js文件 -->
+<script type="text/javascript" src="http://code.jquery.com/ui/1.10.4/jquery-ui.js" ></script>
+
+ </head>
+ <body link="blue" vlink="purple" >
+  <script type="text/javascript">
+  	
+	function getTable(id){
+    	var mytable = document.getElementById(id);
+    	var data = [];
+    	for(var i=0,rows = mytable.rows.length; i<rows; i++){
+       		for(var j=0,cells=mytable.rows[i].cells.length; j<cells; j++){
+            	if(!data[i]){
+                	data[i] = new Array();
+            	}	
+            	data[i][j] = mytable.rows[i].cells[j].innerHTML;
+        	}
+    	}
+    	return data;
+    	console.log(data[1])
+	}
+	 function showTableContent(id){
+        var data = getTable(id);
+        var tmp = '';
+        $("#language").autocomplete({
+    		source: data
+		});
+        tmp = data[1][1];
+        console.log(tmp)
+    }
+	showTableContent('hbsj')
+//搜索方法
+function seachData(datas,str){
+	str = str.toLocaleUpperCase();
+	var results = [];
+	for( var i = 0;i<datas.length;i++){
+		for( var z = 0; z<datas[i].length;z++){
+			if(datas[i][z].indexOf(str)>-1){
+			results.push(datas[i][0]);
+			results.push(datas[i][2])
+		}
+		}
+		
+	}
+	return results;
+}
+window.onload = function(){
+	console.log("reday")
+	var data = getTable('hbsj');
+	
+function unique(arr){
+　　var res = [arr[0]];
+　　for(var i=1;i<arr.length;i++){
+　　　　var repeat = false;
+　　　　for(var j=0;j<res.length;j++){
+　　　　　　if(arr[i] == res[j]){
+　　　　　　　　repeat = true;
+　　　　　　　　break;
+　　　　　　}
+　　　　}
+　　　　if(!repeat){
+　　　　　　res.push(arr[i]);
+　　　　}
+　　}
+　　return res;
+}
+var data_arr= new Array();
+var data_arrs= new Array();  
+var seach_g= new Array(); 
+document.getElementById("seach").onkeyup = function(){
+	var str = document.getElementById("seach").value;
+	var sta = seachData(data,str);
+	for(var i=0 ;i<sta.length;i++){
+		data_arr[i] = sta[i]
+	}
+	data_arrs =  unique(data_arr)
+	for(var x=0; x<20;x++){
+		seach_g[x] = data_arrs[x];
+	}
+	console.log(seach_g)
+}
+}
+</script>
+ </body>
+</html>
